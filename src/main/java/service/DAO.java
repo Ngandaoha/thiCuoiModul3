@@ -54,6 +54,38 @@ public class DAO implements IDAO{
         return list;
     }
 
+    public List<LoaiMatBang> findAllLoaiMatBang() {
+        List<LoaiMatBang> list = new ArrayList<>();
+        String sql = "CAll findAllLoaiMatBang()";
+        Connection connection = baseRepository.getConnection();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                int ma_lmb = resultSet.getInt("ma_lmb");
+                String ten_lmb = resultSet.getString("ten_lmb");
+                list.add(new LoaiMatBang(ma_lmb, ten_lmb));
+            }
+
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
+    public List<MatBang> Search(int idLoaiTrangThai) {
+        List<MatBang> list = new ArrayList<>();
+        String sql = "CAll Search(?)";
+        Connection connection = baseRepository.getConnection();
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, idLoaiTrangThai);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            list = toList(resultSet);
+        } catch (SQLException e){
+            System.out.println(e.getMessage());
+        }
+        return list;
+    }
+
     @Override
     public MatBang findById(String maMB) {
         return null;
