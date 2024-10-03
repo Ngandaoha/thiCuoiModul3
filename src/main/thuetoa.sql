@@ -41,3 +41,56 @@ begin
 	order by mat_bang.dien_tich;
 end //
 DELIMITER ;
+
+DELIMITER //
+create procedure findAllSearch(
+    in id_loai_trang_thai int
+)
+begin
+select
+    mat_bang.*,
+    trang_thai.ten_tt,
+    loai_mat_bang.ten_lmb
+from
+    mat_bang
+        join
+    trang_thai on trang_thai.ma_tt = mat_bang.ma_tt
+        join
+    loai_mat_bang on loai_mat_bang.ma_lmb = mat_bang.ma_lmb
+where
+    trang_thai.ma_tt = id_loai_trang_thai
+order by
+    mat_bang.dien_tich;
+end //
+DELIMITER ;
+
+DELIMITER //
+create procedure findAllLoaiMatBang()
+begin
+select *
+from loai_mat_bang;
+end //
+DELIMITER ;
+
+
+DELIMITER //
+create procedure Search(
+    in id_loai_mat_bang int
+)
+begin
+select
+    mat_bang.*,
+    trang_thai.ten_tt,
+    loai_mat_bang.ten_lmb
+from
+    mat_bang
+        join
+    trang_thai on trang_thai.ma_tt = mat_bang.ma_tt
+        join
+    loai_mat_bang on loai_mat_bang.ma_lmb = mat_bang.ma_lmb
+where
+    loai_mat_bang.ma_lmb = id_loai_mat_bang
+order by
+    mat_bang.dien_tich;
+end //
+DELIMITER ;
