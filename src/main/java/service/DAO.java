@@ -3,7 +3,7 @@ package service;
 import common.BaseRepository;
 import model.LoaiMatBang;
 import model.MatBang;
-import model.TrangThai;
+import model.TrangThai; 
 
 import java.sql.*;
 import java.util.ArrayList;
