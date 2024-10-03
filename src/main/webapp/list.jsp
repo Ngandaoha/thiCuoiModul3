@@ -3,19 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thông tin mặt bằng </title>
+    <title>Quản lý mặt bằng cho thuê</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-3">
-    <form id="filterForm" method="get" action="">
+    <form id="filterForm" method="post" action="">
         <div class="row">
             <div class="col-md-6">
                 <label for="loaiMatBang" class="form-label">Loại mặt bằng</label>
                 <select id="loaiMatBang" name="loaiMatBang" class="form-select">
-                    <option value="">Tất cả</option>
-                    <option value="1">Văn phòng chia sẻ</option>
-                    <option value="2">Văn phòng chọn gói</option>
+                    <option value="0">Tất cả</option>
+                    <c:forEach var="item" items="${loaiMatBangs}">
+                        <option value="${item.maLoai}">${item.tenLoai}</option>
+                    </c:forEach>
                 </select>
             </div>
             <div class="col-md-6">
